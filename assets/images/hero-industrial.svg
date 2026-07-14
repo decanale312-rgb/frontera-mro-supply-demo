@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Escena industrial original para Frontera MRO Supply">
+  <rect width="1600" height="900" fill="#f4f6f8"/>
+  <rect x="90" y="90" width="1420" height="720" fill="#ffffff" stroke="#d8e0e8" stroke-width="8"/>
+  <rect x="150" y="150" width="480" height="260" fill="#071f37"/>
+  <rect x="690" y="150" width="360" height="260" fill="#e8f0f8" stroke="#d8e0e8" stroke-width="6"/>
+  <rect x="1110" y="150" width="260" height="260" fill="#ffffff" stroke="#d8e0e8" stroke-width="6"/>
+  <rect x="150" y="470" width="360" height="250" fill="#ffffff" stroke="#d8e0e8" stroke-width="6"/>
+  <rect x="570" y="470" width="380" height="250" fill="#071f37"/>
+  <rect x="1010" y="470" width="360" height="250" fill="#e8f0f8" stroke="#d8e0e8" stroke-width="6"/>
+  <rect x="210" y="210" width="160" height="110" fill="#c82332"/>
+  <rect x="410" y="210" width="150" height="110" fill="#ffffff"/>
+  <circle cx="870" cy="280" r="78" fill="#c82332"/>
+  <rect x="1180" y="210" width="120" height="120" fill="#071f37"/>
+  <path d="M240 535h190v70H240zM240 630h130v45H240z" fill="#123b63"/>
+  <path d="M660 535h210v55H660zM660 625h160v50H660z" fill="#ffffff"/>
+  <path d="M1090 555h190v36H1090zM1090 625h130v36H1090z" fill="#c82332"/>
+  <text x="150" y="795" fill="#071f37" font-family="Arial" font-size="42" font-weight="700">Catalogo MRO + RFQ</text>
+</svg>
