@@ -103,10 +103,10 @@ summary:focus-visible {
 
 .main-header {
   display: grid;
-  grid-template-columns: auto minmax(340px, 1fr) auto auto;
+  grid-template-columns: auto minmax(340px, 1fr) auto;
   grid-template-areas:
-    "brand nav quote cta"
-    "brand nav quote cta";
+    "brand nav cta"
+    "brand nav cta";
   align-items: center;
   gap: 10px 22px;
   min-height: 86px;
@@ -162,28 +162,6 @@ summary:focus-visible {
 
 .nav-links a:hover {
   color: var(--red);
-}
-
-.quote-chip {
-  grid-area: quote;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 9px 12px;
-  color: var(--navy);
-  font-weight: 900;
-  border: 1px solid var(--line);
-  background: var(--white);
-}
-
-.quote-chip span {
-  display: grid;
-  min-width: 26px;
-  height: 26px;
-  place-items: center;
-  color: var(--white);
-  background: var(--red);
 }
 
 .header-cta {
@@ -573,46 +551,190 @@ textarea {
   background: var(--white);
 }
 
+.section-anchor {
+  display: block;
+  position: relative;
+  top: -88px;
+  visibility: hidden;
+}
+
+.catalog-page {
+  background: var(--soft);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--steel);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.breadcrumb a {
+  color: var(--navy);
+}
+
+.catalog-heading {
+  max-width: 820px;
+  margin-bottom: 26px;
+}
+
+.catalog-heading h1 {
+  margin-bottom: 14px;
+}
+
+.catalog-notice {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 12px;
+  color: var(--navy);
+  font-weight: 900;
+  background: #eef3f7;
+  border-left: 4px solid var(--red);
+}
+
+.product-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.product-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  position: relative;
+  min-height: 100%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--navy-2);
+  box-shadow: 0 14px 30px rgba(7, 31, 55, 0.08);
+}
+
+.product-card-featured {
+  border-top-color: var(--red);
+}
+
+.product-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  padding: 7px 9px;
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: var(--red);
+}
+
+.product-media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  padding: 16px;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.98) 0 38%, rgba(238, 243, 247, 0.9) 72%),
+    #eef3f7;
+  border-bottom: 1px solid var(--line);
+}
+
+.product-media picture,
+.product-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-media img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.product-card-body {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.product-brand {
+  margin: 0;
+  color: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.product-card h2 {
+  font-size: 1.2rem;
+}
+
+.product-card ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--steel);
+}
+
+.product-spec-details {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.product-spec-details summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  color: var(--navy);
+  font-weight: 900;
+  background: var(--soft-blue);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+.product-spec-details[open] summary {
+  margin-bottom: 10px;
+}
+
+.product-price {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 900;
+}
+
+.product-note {
+  margin: 0;
+  color: var(--steel);
+  font-size: 0.92rem;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: 10px;
+  align-items: end;
+  margin-top: auto;
+}
+
+.product-actions input {
+  width: 100%;
+}
+
+.catalog-return {
+  margin-top: 24px;
+}
+
 .rfq-section {
   background: var(--soft);
 }
 
 .rfq-heading {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 28px;
-  align-items: end;
+  max-width: 780px;
   margin-bottom: 24px;
-}
-
-.rfq-reference {
-  padding: 18px;
-  color: var(--white);
-  background: var(--navy);
-  border-left: 5px solid var(--red);
-}
-
-.rfq-reference span,
-.rfq-reference strong {
-  display: block;
-}
-
-.rfq-reference span {
-  color: #cbd9e7;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-}
-
-.rfq-reference small {
-  display: block;
-  margin-top: 8px;
-  color: #cbd9e7;
-  font-weight: 700;
-}
-
-.demo-load-button {
-  width: 100%;
-  margin-top: 14px;
 }
 
 .rfq-form {
@@ -769,6 +891,44 @@ label small {
   border: 1px solid var(--line);
 }
 
+.email-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(7, 31, 55, 0.62);
+}
+
+.email-modal[hidden] {
+  display: none;
+}
+
+.email-modal-card {
+  width: min(520px, 100%);
+  padding: 26px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--red);
+  box-shadow: 0 22px 46px rgba(7, 31, 55, 0.26);
+}
+
+.email-modal-card h2 {
+  font-size: 1.5rem;
+}
+
+.email-modal-card p {
+  color: var(--steel);
+}
+
+.email-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
 .faq-list {
   display: grid;
   gap: 12px;
@@ -822,7 +982,7 @@ details p {
   .main-header {
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
-      "brand nav quote"
+      "brand nav cta"
       "nav nav cta";
   }
 
@@ -832,6 +992,10 @@ details p {
 
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .manual-grid,
@@ -861,7 +1025,7 @@ details p {
     grid-template-areas:
       "brand menu"
       "nav nav"
-      "quote cta";
+      "cta cta";
     min-height: auto;
   }
 
@@ -924,8 +1088,7 @@ details p {
     padding: 52px 0;
   }
 
-  .header-cta,
-  .quote-chip {
+  .header-cta {
     width: 100%;
   }
 
@@ -934,6 +1097,7 @@ details p {
   }
 
   .category-grid,
+  .product-card-grid,
   .partner-grid,
   .form-grid,
   .quick-contact-grid,
@@ -947,6 +1111,10 @@ details p {
 
   .quote-row-actions {
     justify-content: flex-start;
+  }
+
+  .product-actions {
+    grid-template-columns: 1fr;
   }
 
   .other-field {

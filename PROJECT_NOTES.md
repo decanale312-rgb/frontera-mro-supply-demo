@@ -10,9 +10,9 @@ Do not move, rename, duplicate, or edit files outside this project folder unless
 
 ## Project Objective
 
-Frontera MRO Supply is a Spanish-first MRO supplier website designed as a professional portfolio demonstration for the Ciudad Juarez-El Paso industrial market.
+Frontera MRO Supply is a Spanish-first MRO supplier website designed as a professional portfolio project for the Ciudad Juarez-El Paso industrial market.
 
-The current goal is a smooth one-click category-to-WhatsApp RFQ demonstration: users select an MRO category, see a complete category-specific example loaded automatically, customize the visible dropdowns if needed, and generate a structured WhatsApp quotation message without first pressing an add-product button.
+The current goal is a clean one-click category-to-WhatsApp solicitud de cotizacion flow: users select an MRO category, customize the visible dropdowns if needed, and generate a structured WhatsApp quotation message without first pressing an add-product button.
 
 ## Target Users
 
@@ -44,28 +44,36 @@ The old 12-product fictional catalog has been removed. The active site uses thes
 
 - Abrasivos
 - Manejo de materiales
-- Climatizacion y ventilacion
+- Neumatica
 - Material electrico
 - Seguridad industrial
 - Herramientas
 
 Each category card includes a compact local PNG image, a short description, and a `Solicitar esta categoria` button.
 
-## Category-To-RFQ Workflow
+The `Neumática` category is now the first separate category-catalog experience. Its card opens `neumatica.html` instead of going directly to the quotation form. The other five categories keep the direct category-to-quotation behavior.
+
+## Category-To-Quotation Workflow
 
 Clicking a category card/button must:
 
-- Smoothly scroll to the RFQ form
-- Select the chosen category in the manual RFQ fields
+- Smoothly scroll to the quotation form
+- Select the chosen category in the quotation fields
 - Load the category's default product, two specifications, quantity `1`, and unit `Pieza`
 - Treat the visible dropdown configuration as `Producto 1` immediately
-- Update the quotation counter to `1`
-- Preload fictional demo contact details only into empty contact fields
+- Preload demonstration contact values only when contact fields are empty:
+  - `Daniel Canales`
+  - `Planta Industrial Demo`
+  - `decanale312@gmail.com`
+  - `Mantenimiento`
+  - `Cotización estándar`
+  - `WhatsApp`
+- Never overwrite visitor-entered contact information
 - Focus the primary `Generar solicitud por WhatsApp` button after scrolling
-- Show a Spanish confirmation message such as `Ejemplo de Abrasivos listo para enviar o personalizar.`
+- Show a Spanish confirmation message such as `Abrasivos seleccionada. Personaliza el producto y prepara tu solicitud.`
 - Avoid creating duplicate `Producto 1` rows when dropdowns change
 
-The customer can then customize the visible product values, generate the RFQ message, add more products with `Agregar otro producto`, edit/remove saved additional products, review the message, copy it, or open WhatsApp.
+The customer can then customize the visible product values, generate the quotation message, add more products with `Agregar otro producto`, edit/remove saved additional products, review the message, copy it, or open WhatsApp.
 
 ## Contact Configuration
 
@@ -93,7 +101,7 @@ Active links should use:
 
 ## Required Quotation Workflow
 
-The RFQ form is the central feature.
+The quotation form is the central feature.
 
 It must:
 
@@ -116,7 +124,7 @@ It must:
 - Include an optional reference-file field clearly presented as front-end-only
 - Validate essential fields
 - Generate a standardized Spanish quotation message
-- Generate a local demonstration reference such as `FMS-20260712-001`
+- Generate a local reference folio such as `FMS-20260712-001`
 - Display the generated message for review
 - Provide Copy message, Edit request, Empty request, and Open WhatsApp controls
 - Encode the WhatsApp URL correctly
@@ -127,9 +135,9 @@ It must:
 
 - `PROJECT_NOTES.md` - source of truth and project coordination notes
 - `AGENTS.md` - permanent Codex guidance and mentoring style
-- `index.html` - website structure, category cards, contact links, and RFQ form markup
-- `styles.css` - desktop-first layout, hero layering, compact categories, RFQ rows, and responsive behavior
-- `app.js` - category selection, RFQ items, validation, localStorage draft, message generation, copy behavior, and WhatsApp link
+- `index.html` - website structure, category cards, contact links, and quotation form markup
+- `styles.css` - desktop-first layout, hero layering, compact categories, quotation rows, and responsive behavior
+- `app.js` - category selection, quotation items, validation, localStorage draft, message generation, copy behavior, and WhatsApp link
 - `README.md` - public-facing project overview and testing instructions
 - `assets/images/` - hero image and active category PNG assets plus preserved older image versions
 - `.codex-checkpoints/` - local backup checkpoints before larger edits
@@ -142,22 +150,21 @@ It must:
 - Language indicator
 - Original text-based Frontera MRO wordmark
 - Navigation for Inicio, Categorias, Soluciones, Nosotros, FAQ, and Contacto
-- Header quotation counter
 - Strong Solicitar cotizacion CTA
 - Desktop navigation visible above 850px
 - Mobile menu below 850px
 - Hero photograph and dark overlay
 - Hero eyebrow: `SUMINISTRO MRO PARA MANUFACTURA FRONTERIZA`
 - Six-category compact grid
-- Keyboard-accessible category-to-RFQ selection behavior
-- One-click category-to-WhatsApp RFQ setup
+- Keyboard-accessible category-to-quotation selection behavior
+- One-click category-to-WhatsApp quotation setup
 - Category-dependent product and specification dropdowns
 - Live `Producto 1` inclusion without pressing an add-product button
 - Manual `Otro` product/specification fields
-- Multiple RFQ products
+- Multiple quotation products
 - Saved product editing and removal
 - Required-field validation
-- Formatted Spanish RFQ message generation
+- Formatted Spanish quotation message generation
 - Copy message control
 - Edit request control
 - Open WhatsApp control
@@ -169,22 +176,118 @@ It must:
 ## Known Problems / Limitations
 
 - The optional reference-file field does not upload files.
-- The local reference number is fixed for this demonstration pass.
+- The local reference number is fixed for this front-end pass.
 - There is no backend, database, analytics, CRM integration, login, payment, or checkout.
-- This folder is not a git repository as of the latest check; project-local checkpoints are used instead.
+- The local Git repository is connected to `https://github.com/decanale312-rgb/frontera-mro-supply-demo.git`.
 
 ## Decisions Already Made
 
-- This is a portfolio demonstration, not an official company site.
+- This is a portfolio project, not an official company site.
 - The company name is `Frontera MRO Supply`.
 - The main slogan is `Soluciones MRO locales para mantener tu planta en movimiento.`
 - The site is Spanish-first.
 - The site is desktop-first and responsive, not mobile-first.
 - Plain HTML, CSS, and JavaScript only.
 - No React, Bootstrap, Tailwind, build tools, backend, database, login, checkout, or payment system.
-- RFQ / quotation is the primary conversion path.
-- WhatsApp message generation is allowed as a front-end demo.
+- Solicitud de cotizacion is the primary conversion path.
+- WhatsApp message generation is allowed as a front-end workflow.
 - Do not display the fictional status prominently in the hero; keep the disclaimer in the footer.
+- Product names, manufacturers, models, specifications, prices, and photographs must come from verified user-supplied information.
+- Do not invent product prices, SKUs, specifications, manufacturer claims, or distributor relationships.
+
+## Next Product-Loading Workflow
+
+When the user supplies verified product information:
+
+- Confirm the exact product name, manufacturer, model, specifications, unit, price, currency, price note, image, and image alt text.
+- Confirm whether the product should be displayed publicly before adding it to the interface.
+- Add product records in `app.js` using the prepared verified-product record area.
+- Do not display empty labels or `undefined` values when optional product fields are missing.
+- Keep the quotation form as the main conversion path.
+
+## Neumatica Catalog Page
+
+New page:
+
+- `neumatica.html`
+
+Purpose:
+
+- `Neumatica` is the complete proof-of-concept category for the current portfolio demonstration.
+- It shows how one industrial category can expand from a compact homepage card into a professional product catalog with product information, reference prices, and a structured quotation handoff.
+- The architecture can later be repeated for Abrasivos, Manejo de materiales, Material electrico, Seguridad industrial, and Herramientas.
+
+Current product cards:
+
+- `Válvula manual 5/2 Nugget 200`
+  - Brand: `IMI Norgren`
+  - Part number: `K71DA00KS1KL0`
+  - Price wording: `Precio de referencia: USD $260.85`
+- `Unidad FRL Excelon BL74`
+  - Brand: `IMI Norgren`
+  - Configuration: `BL74-605G`
+  - Price wording: `Precio de referencia de la familia: desde USD $535.86`
+  - Limitation: exact configuration, availability, taxes, and final price require confirmation.
+- `Cilindro compacto de doble efecto`
+  - Brand: `IMI Norgren`
+  - Part number: `RA/192032/MX/50`
+  - Price wording: `Precio de referencia: USD $162.02`
+  - Disclosure: image is representative of the `RA/192000/MX` series; visible configuration and stroke may vary.
+
+Product-card buttons use a static query-string flow such as:
+
+`index.html?producto=valvula-k71da00ks1kl0&cantidad=1#solicitud`
+
+The index page maps that product id through `verifiedProductRecords` in `app.js`, preloads the selected product once, preserves existing visitor contact information, and keeps the WhatsApp quotation workflow intact.
+
+Email demonstration:
+
+- The generated-message area includes `Solicitar por correo`.
+- This does not open an email client, use `mailto:`, call an API, or send data.
+- It opens an accessible preparation message explaining that email integration is planned for a later stage.
+- `Continuar por WhatsApp` returns the visitor to the working WhatsApp action.
+- Escape and `Cerrar` close the message.
+
+Verified behavior on 2026-07-16:
+
+- `neumatica.html` opens directly from the local preview server.
+- The Neumatica category card on `index.html` opens `neumatica.html`.
+- The other five category cards still load their existing quotation defaults directly.
+- Each pneumatic product card sends its product id and quantity into `index.html#solicitud`.
+- The selected pneumatic product becomes the visible configured product and is included as `PRODUCTO 1` without pressing an add-product button.
+- Existing visitor contact information is preserved when a pneumatic product is loaded.
+- The generated WhatsApp URL starts with `https://wa.me/526561696385?text=`.
+- Additional products can still be added, edited, and removed.
+- `Otro` fields still reveal manual inputs and appear in the generated message.
+- `localStorage` draft restoration works on normal page loads.
+- Browser back navigation from the quotation handoff returns to `neumatica.html`.
+- Desktop 1440px and mobile 390px checks showed no horizontal overflow.
+
+Performance decisions:
+
+- Original PNG product images were preserved.
+- WebP copies were created for product cards.
+- Product-card images use `loading="lazy"`.
+- Product-card images include `width` and `height` attributes to reduce layout shift.
+- The index hero image is preloaded and remains eager.
+- Product images are not loaded on `index.html`.
+- No external libraries, framework, backend, or build tooling were added.
+
+Product image size results:
+
+- Valve PNG: 1728.3 KB; WebP: 46.7 KB
+- FRL PNG: 1629.7 KB; WebP: 53.4 KB
+- Cylinder PNG: 1800.6 KB; WebP: 106.4 KB
+
+Large remaining image assets to watch later:
+
+- `category-abrasives-v2.png`: 2756.5 KB
+- `category-safety.png`: 2114.2 KB
+- `category-pneumatics.png`: 2080.2 KB
+- `category-tools.png`: 2066.2 KB
+- `category-material-handling-v2.png`: 2033.4 KB
+- `category-electrical.png`: 2015.5 KB
+- `hero-industrial.png`: 1869.9 KB
 
 ## Testing Checklist
 
@@ -193,8 +296,8 @@ Before considering the current version stable, test:
 - Run `node --check app.js`
 - Click all six category buttons
 - Confirm automatic category selection
-- Confirm smooth scroll to RFQ
-- Confirm the quotation counter becomes `1`
+- Confirm smooth scroll to the quotation form
+- Confirm the visible dropdown configuration becomes `Producto 1`
 - Confirm focus moves to `Generar solicitud por WhatsApp`
 - Change selected categories
 - Generate a message without pressing `Agregar otro producto`
@@ -205,7 +308,7 @@ Before considering the current version stable, test:
 - Confirm existing visitor information is not overwritten by category clicks
 - Test `Otro` manual fields
 - Test required-field validation
-- Generate the Spanish RFQ message
+- Generate the Spanish quotation message
 - Confirm the message includes contact, company, department, contact information, selected category, product descriptions, brand, quantity/unit, equivalents, required date, urgency, and notes
 - Test Copy message
 - Test Open WhatsApp
@@ -222,21 +325,23 @@ Before considering the current version stable, test:
 
 ## Most Recent Change Summary
 
-The most recent implementation created the one-click category-to-WhatsApp RFQ demonstration.
+The most recent implementation added the first separate category-catalog page for `Neumática`.
 
 Major changes included:
 
-- Category clicks now load the selected category defaults and immediately count the visible dropdown configuration as `Producto 1`
-- Category clicks preload fictional demo contact information only when the contact fields are empty
-- The main action remains `Generar solicitud por WhatsApp`; `Agregar otro producto` is only for Product 2 and later
-- The reset demo button is labeled `Restablecer ejemplo` and asks for confirmation before replacing entered data
-- Category cards can be activated with keyboard Enter/Space
-- Saved products now have edit and remove controls
-- Custom `Otro` values now survive localStorage draft restoration
-- Browser verification passed for all six category defaults, Product 1 generation without an add-product click, modified dropdown output, multiple-product output, visitor-info preservation, `Otro` fields, localStorage restoration, and no horizontal overflow at 1440px and 390px
+- Created `neumatica.html`
+- Connected the `Neumática` category card to the catalog page
+- Preserved direct-to-quotation behavior for the other five categories
+- Added three verified pneumatic product records to `verifiedProductRecords`
+- Added static query-string product handoff into the existing quotation form
+- Preserved automatic empty-field preloading of demonstration contact data
+- Added WebP product-card images while preserving PNG originals
+- Added the representative cylinder image disclosure
+- Added reference-price wording and confirmation limitations
+- Confirmed product handoff keeps WhatsApp generation functional
 - Kept WhatsApp number `526561696385`
-- Kept the hero image, category images, overlay, HTML text, and responsive visual design
+- Kept the hero image, category images, localStorage, and responsive visual design
 
 Latest checkpoint:
 
-`.codex-checkpoints\pre-one-click-rfq-20260714-171027`
+Git branch: `cleanup-rfq-interface-before-products`
