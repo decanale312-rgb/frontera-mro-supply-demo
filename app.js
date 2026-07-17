@@ -2,7 +2,105 @@ const WHATSAPP_NUMBER = "526561696385";
 const STORAGE_KEY = "fronteraMroDropdownRfqDraft";
 const REFERENCE_NUMBER = "FMS-20260712-001";
 
+// Verified user-supplied product records live here.
+// Supported fields: id, category, productName, manufacturer, model, sku,
+// shortDescription, specifications, unit, price, currency, priceNote, image, imageAlt.
+const verifiedProductRecords = [
+  {
+    id: "valvula-k71da00ks1kl0",
+    category: "Neumática",
+    productName: "Válvula manual 5/2 Nugget 200",
+    manufacturer: "IMI Norgren",
+    model: "Nugget 200",
+    sku: "K71DA00KS1KL0",
+    shortDescription: "Válvula manual 5/2 para control neumático en mantenimiento y manufactura.",
+    specifications: [
+      "Operación: 5/2",
+      "Accionamiento: palanca manual con retorno por resorte",
+      "Puerto: 1/4 NPT",
+      "Presión de operación: 0.34 a 10.35 bar",
+      "Presión equivalente: 4.91 a 150 psi",
+    ],
+    unit: "Pieza",
+    price: "260.85",
+    currency: "USD",
+    priceNote: "Precio de referencia: USD $260.85",
+    image: "assets/images/products/neumatica-valvula-k71da00ks1kl0-polished.webp",
+    imageAlt: "Válvula manual neumática 5/2 Nugget 200 IMI Norgren K71DA00KS1KL0",
+  },
+  {
+    id: "frl-excelon-bl74",
+    category: "Neumática",
+    productName: "Unidad FRL Excelon BL74",
+    manufacturer: "IMI Norgren",
+    model: "BL74-605G",
+    sku: "BL74-605G",
+    shortDescription: "Unidad filtro-regulador-lubricador para preparación de aire comprimido.",
+    specifications: [
+      "Medio: aire comprimido",
+      "Puerto: G3/4",
+      "Purga automática",
+      "Elemento filtrante: 40 μm",
+      "Regulación de salida: 0.3 a 10 bar",
+      "Presión máxima de entrada: 10 bar",
+      "Lubricador: micro-niebla",
+      "Vasos de policarbonato",
+      "País de origen indicado por el fabricante: México",
+    ],
+    unit: "Pieza",
+    price: "535.86",
+    currency: "USD",
+    priceNote: "Precio de referencia de la familia: desde USD $535.86",
+    note: "La configuración exacta, disponibilidad, impuestos y precio final requieren confirmación.",
+    image: "assets/images/products/neumatica-frl-excelon-bl74-polished.webp",
+    imageAlt: "Unidad FRL Excelon BL74 IMI Norgren para aire comprimido",
+  },
+  {
+    id: "cilindro-ra192032mx50",
+    category: "Neumática",
+    productName: "Cilindro compacto de doble efecto",
+    manufacturer: "IMI Norgren",
+    model: "RA/192032/MX/50",
+    sku: "RA/192032/MX/50",
+    shortDescription: "Cilindro compacto de doble efecto para automatización neumática.",
+    specifications: [
+      "Diámetro: 32 mm",
+      "Carrera: 50 mm",
+      "Puerto: G1/8",
+      "Norma: ISO 21287",
+      "Operación: doble efecto",
+      "Presión: 1 a 10 bar",
+      "Fuerza teórica a 6 bar: 482 N",
+    ],
+    unit: "Pieza",
+    price: "162.02",
+    currency: "USD",
+    priceNote: "Precio de referencia: USD $162.02",
+    note: "Imagen representativa de la serie RA/192000/MX. La configuración y carrera visibles en la imagen pueden variar.",
+    image: "assets/images/products/neumatica-cilindro-serie-ra192000mx-polished.webp",
+    imageAlt: "Cilindro compacto neumático de doble efecto serie RA/192000/MX",
+  },
+];
+
 const categoryConfigs = {
+  "Neumática": {
+    description: "Componentes para conducción, control y preparación de aire en aplicaciones industriales.",
+    image: "assets/images/category-pneumatics.png",
+    imageAlt: "Cilindro, regulador, válvulas, conexiones y manguera neumática industrial.",
+    catalogUrl: "neumatica.html",
+    actionLabel: "Cotizar neumática",
+    productLabel: "Producto",
+    specOneLabel: "Marca / parte",
+    specTwoLabel: "Especificaciones",
+    defaults: {
+      product: "Válvula manual 5/2 Nugget 200",
+      specOne: "IMI Norgren | K71DA00KS1KL0",
+      specTwo: "5/2 manual, 1/4 NPT",
+    },
+    products: ["Válvula manual 5/2 Nugget 200", "Unidad FRL Excelon BL74", "Cilindro compacto de doble efecto", "Otro"],
+    specOne: ["IMI Norgren | K71DA00KS1KL0", "IMI Norgren | BL74-605G", "IMI Norgren | RA/192032/MX/50", "Marca / parte por confirmar", "Otro"],
+    specTwo: ["5/2 manual, 1/4 NPT", "FRL G3/4, 40 μm, 0.3 a 10 bar", "32 mm, carrera 50 mm, ISO 21287", "Especificaciones por confirmar", "Otra"],
+  },
   "Abrasivos": {
     description: "Discos, lijas, ruedas y consumibles para corte, desbaste o acabado.",
     image: "assets/images/category-abrasives-v2.png",
@@ -18,38 +116,6 @@ const categoryConfigs = {
     products: ["Disco de corte", "Disco de desbaste", "Disco flap", "Lija", "Rueda abrasiva", "Otro"],
     specOne: ["Acero", "Acero inoxidable", "Aluminio", "Concreto", "Madera", "No especificado"],
     specTwo: ["4½ pulgadas", "5 pulgadas", "7 pulgadas", "9 pulgadas", "Medida por confirmar"],
-  },
-  "Manejo de materiales": {
-    description: "Equipos y accesorios para mover, levantar o acomodar materiales.",
-    image: "assets/images/category-material-handling-v2.png",
-    imageAlt: "Patín hidráulico, carro plataforma y accesorios para manejo de materiales.",
-    productLabel: "Producto",
-    specOneLabel: "Capacidad",
-    specTwoLabel: "Operación",
-    defaults: {
-      product: "Patín hidráulico",
-      specOne: "2 toneladas",
-      specTwo: "Manual",
-    },
-    products: ["Patín hidráulico", "Carrito de plataforma", "Polipasto", "Eslinga", "Rueda industrial", "Otro"],
-    specOne: ["500 kg", "1 tonelada", "2 toneladas", "3 toneladas", "Capacidad por confirmar"],
-    specTwo: ["Manual", "Eléctrica", "Neumática", "No especificada"],
-  },
-  "Climatización y ventilación": {
-    description: "Ventilacion, extraccion, filtros y requerimientos HVAC para planta.",
-    image: "assets/images/category-pneumatics.png",
-    imageAlt: "Cilindro, regulador, válvulas, conexiones y manguera neumática industrial.",
-    productLabel: "Producto",
-    specOneLabel: "Voltaje",
-    specTwoLabel: "Aplicación",
-    defaults: {
-      product: "Ventilador industrial",
-      specOne: "220 V",
-      specTwo: "Área de producción",
-    },
-    products: ["Ventilador industrial", "Extractor", "Aire acondicionado", "Calefactor", "Filtro", "Refacción HVAC", "Otro"],
-    specOne: ["127 V", "220 V", "440 V", "Voltaje por confirmar"],
-    specTwo: ["Área de producción", "Almacén", "Oficina", "Gabinete eléctrico", "Extracción localizada", "Otra"],
   },
   "Material eléctrico": {
     description: "Componentes eléctricos, control, protección y gabinete industrial.",
@@ -83,6 +149,22 @@ const categoryConfigs = {
     specOne: ["Chica", "Mediana", "Grande", "Extra grande", "Unitalla", "No especificada"],
     specTwo: ["General", "Eléctrico", "Soldadura", "Químicos", "Alturas", "Impacto", "Otro"],
   },
+  "Manejo de materiales": {
+    description: "Equipos y accesorios para mover, levantar o acomodar materiales.",
+    image: "assets/images/category-material-handling-v2.png",
+    imageAlt: "Patín hidráulico, carro plataforma y accesorios para manejo de materiales.",
+    productLabel: "Producto",
+    specOneLabel: "Capacidad",
+    specTwoLabel: "Operación",
+    defaults: {
+      product: "Patín hidráulico",
+      specOne: "2 toneladas",
+      specTwo: "Manual",
+    },
+    products: ["Patín hidráulico", "Carrito de plataforma", "Polipasto", "Eslinga", "Rueda industrial", "Otro"],
+    specOne: ["500 kg", "1 tonelada", "2 toneladas", "3 toneladas", "Capacidad por confirmar"],
+    specTwo: ["Manual", "Eléctrica", "Neumática", "No especificada"],
+  },
   "Herramientas": {
     description: "Herramientas manuales, electricas, medicion y mantenimiento general.",
     image: "assets/images/category-tools.png",
@@ -106,19 +188,18 @@ const unitOptions = ["Pieza", "Caja", "Metro", "Juego", "Paquete", "Rollo"];
 const state = {
   quoteItems: [],
   latestMessage: "",
+  currentProductRecordId: "",
 };
 
 const elements = {
   menuToggle: document.querySelector(".menu-toggle"),
   navLinks: document.querySelector("#site-menu"),
   categoryGrid: document.querySelector("#category-grid"),
-  quoteCount: document.querySelector("#quote-count"),
   additionalProductsPanel: document.querySelector("#additional-products-panel"),
   quoteItems: document.querySelector("#quote-items"),
   emptyQuote: document.querySelector("#empty-quote"),
   quoteForm: document.querySelector("#quote-form"),
   clearQuote: document.querySelector("#clear-quote"),
-  loadDemo: document.querySelector("#load-demo"),
   addManualProduct: document.querySelector("#add-manual-product"),
   generateWhatsapp: document.querySelector("#generate-whatsapp"),
   manualCategory: document.querySelector("#manual-category"),
@@ -139,23 +220,40 @@ const elements = {
   messagePreview: document.querySelector("#message-preview"),
   whatsappLink: document.querySelector("#whatsapp-link"),
   copyMessage: document.querySelector("#copy-message"),
+  requestEmail: document.querySelector("#request-email"),
+  emailModal: document.querySelector("#email-modal"),
+  continueWhatsapp: document.querySelector("#continue-whatsapp"),
+  closeEmailModal: document.querySelector("#close-email-modal"),
   editRequest: document.querySelector("#edit-request"),
   clearMessage: document.querySelector("#clear-message"),
   formStatus: document.querySelector("#form-status"),
-  referenceNumber: document.querySelector("#reference-number"),
   optionalDetails: document.querySelector("#optional-details"),
 };
 
 document.addEventListener("DOMContentLoaded", initializeApp);
 
 function initializeApp() {
-  elements.referenceNumber.textContent = REFERENCE_NUMBER;
+  bindMenuToggle();
+
+  if (document.querySelector("[data-catalog-page='neumatica']")) {
+    initializeCatalogPage();
+    return;
+  }
+
+  if (!elements.categoryGrid || !elements.quoteForm) {
+    return;
+  }
+
   renderCategories();
   renderCategoryOptions();
   renderUnitOptions();
   restoreDraft();
 
-  if (!elements.manualCategory.value) {
+  const incomingProduct = getIncomingProductRequest();
+
+  if (incomingProduct) {
+    applyCatalogProductRequest(incomingProduct);
+  } else if (!elements.manualCategory.value) {
     setCategory("Abrasivos", { resetToDefaults: true });
   } else {
     setCategory(elements.manualCategory.value, { resetToDefaults: false });
@@ -165,16 +263,20 @@ function initializeApp() {
   bindEvents();
 }
 
-function bindEvents() {
+function bindMenuToggle() {
+  if (!elements.menuToggle || !elements.navLinks) return;
+
   elements.menuToggle.addEventListener("click", () => {
     const isOpen = elements.navLinks.classList.toggle("is-open");
     elements.menuToggle.setAttribute("aria-expanded", String(isOpen));
   });
+}
 
+function bindEvents() {
   elements.categoryGrid.addEventListener("click", (event) => {
     const target = event.target.closest("[data-category], [data-category-card]");
     if (!target) return;
-    selectCategory(target.dataset.category || target.dataset.categoryCard);
+    handleCategoryAction(target.dataset.category || target.dataset.categoryCard);
   });
 
   elements.categoryGrid.addEventListener("keydown", (event) => {
@@ -184,10 +286,11 @@ function bindEvents() {
     if (!card || event.target.closest("button")) return;
 
     event.preventDefault();
-    selectCategory(card.dataset.categoryCard);
+    handleCategoryAction(card.dataset.categoryCard);
   });
 
   elements.manualCategory.addEventListener("change", () => {
+    state.currentProductRecordId = "";
     setCategory(elements.manualCategory.value, { resetToDefaults: true });
     hideGeneratedMessage();
     renderQuote();
@@ -196,6 +299,9 @@ function bindEvents() {
 
   [elements.manualProduct, elements.manualSpecOne, elements.manualSpecTwo].forEach((field) => {
     field.addEventListener("change", () => {
+      if (field === elements.manualProduct) {
+        state.currentProductRecordId = "";
+      }
       updateOtherFields();
       hideGeneratedMessage();
       renderQuote();
@@ -216,7 +322,6 @@ function bindEvents() {
     });
   });
 
-  elements.loadDemo.addEventListener("click", loadDemoRequest);
   elements.addManualProduct.addEventListener("click", addConfiguredProduct);
 
   elements.quoteItems.addEventListener("click", (event) => {
@@ -238,6 +343,20 @@ function bindEvents() {
   elements.editRequest?.addEventListener("click", editRequest);
   elements.quoteForm.addEventListener("submit", generateQuoteMessage);
   elements.copyMessage.addEventListener("click", copyMessage);
+  elements.requestEmail?.addEventListener("click", openEmailModal);
+  elements.continueWhatsapp?.addEventListener("click", continueWithWhatsapp);
+  elements.closeEmailModal?.addEventListener("click", closeEmailModal);
+  elements.emailModal?.addEventListener("click", (event) => {
+    if (event.target === elements.emailModal) {
+      closeEmailModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && elements.emailModal && !elements.emailModal.hidden) {
+      closeEmailModal();
+    }
+  });
 
   ["contact-name", "company", "department", "reply-contact", "urgency", "required-date", "preferred-brand", "response-method", "equivalents", "general-notes"].forEach((id) => {
     const field = document.querySelector(`#${id}`);
@@ -248,11 +367,11 @@ function bindEvents() {
 
 function renderCategories() {
   elements.categoryGrid.innerHTML = Object.entries(categoryConfigs).map(([name, config]) => `
-    <article class="category-tile" data-category-card="${name}" role="button" tabindex="0" aria-label="Preparar cotización de ${name}">
-      <img src="${config.image}" alt="${config.imageAlt || `Imagen compacta para ${name}`}">
+    <article class="category-tile" data-category-card="${name}" role="button" tabindex="0" aria-label="Solicitar cotización de ${name}">
+      <img src="${config.image}" alt="${config.imageAlt || `Imagen compacta para ${name}`}" width="1448" height="1086">
       <h3>${name}</h3>
       <p>${config.description}</p>
-      <button type="button" data-category="${name}">Solicitar esta categoría</button>
+      <button type="button" data-category="${name}">${config.actionLabel || "Solicitar cotización"}</button>
     </article>
   `).join("");
 }
@@ -265,21 +384,106 @@ function renderUnitOptions() {
   elements.manualUnit.innerHTML = unitOptions.map((unit) => `<option value="${unit}">${unit}</option>`).join("");
 }
 
+function handleCategoryAction(categoryName) {
+  const config = categoryConfigs[categoryName];
+  if (config?.catalogUrl) {
+    window.location.href = config.catalogUrl;
+    return;
+  }
+
+  selectCategory(categoryName);
+}
+
 function selectCategory(categoryName) {
   state.quoteItems = [];
   state.latestMessage = "";
+  state.currentProductRecordId = "";
   setCategory(categoryName, { resetToDefaults: true });
   preloadDemoFieldsIfEmpty();
   hideGeneratedMessage();
   renderQuote();
   saveDraft();
-  showStatus(`Ejemplo de ${categoryName} listo para enviar o personalizar.`, false);
+  showStatus(`${categoryName} seleccionada. Personaliza el producto y prepara tu solicitud.`, false);
 
   document.querySelector("#cotizacion").scrollIntoView({ behavior: "smooth", block: "start" });
 
   window.setTimeout(() => {
     elements.generateWhatsapp.focus();
   }, 350);
+}
+
+function initializeCatalogPage() {
+  document.querySelectorAll("[data-add-product]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest("[data-product-card]");
+      const quantityInput = card?.querySelector("[data-product-quantity]");
+      const quantity = Math.max(1, Number(quantityInput?.value) || 1);
+      const productId = button.dataset.addProduct;
+      const url = new URL("index.html", window.location.href);
+      url.searchParams.set("producto", productId);
+      url.searchParams.set("cantidad", String(quantity));
+      url.hash = "solicitud";
+      window.location.href = url.toString();
+    });
+  });
+}
+
+function getIncomingProductRequest() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get("producto");
+  if (!productId) return null;
+
+  const record = getProductRecord(productId);
+  if (!record) return null;
+
+  return {
+    record,
+    quantity: Math.max(1, Number(params.get("cantidad")) || 1),
+  };
+}
+
+function applyCatalogProductRequest(request) {
+  const { record, quantity } = request;
+  state.quoteItems = [];
+  state.latestMessage = "";
+  state.currentProductRecordId = record.id;
+
+  setCategory(record.category, { resetToDefaults: true });
+  setSelectOrOther(elements.manualProduct, elements.productOther, record.productName);
+  setSelectOrOther(elements.manualSpecOne, elements.specOneOther, getRecordSpecOne(record));
+  setSelectOrOther(elements.manualSpecTwo, elements.specTwoOther, getRecordSpecTwo(record));
+  elements.manualQuantity.value = String(quantity);
+  elements.manualUnit.value = record.unit || "Pieza";
+  preloadDemoFieldsIfEmpty();
+  updateOtherFields();
+  hideGeneratedMessage();
+  renderQuote();
+  saveDraft();
+  showStatus(`${record.productName} agregado a la solicitud. Revisa cantidad, especificaciones y datos de contacto.`, false);
+
+  document.querySelector("#cotizacion").scrollIntoView({ behavior: "smooth", block: "start" });
+
+  window.setTimeout(() => {
+    elements.generateWhatsapp.focus();
+  }, 350);
+}
+
+function getProductRecord(id) {
+  return verifiedProductRecords.find((record) => record.id === id);
+}
+
+function getRecordSpecOne(record) {
+  return `${record.manufacturer} | ${record.sku || record.model}`;
+}
+
+function getRecordSpecTwo(record) {
+  const summaries = {
+    "valvula-k71da00ks1kl0": "5/2 manual, 1/4 NPT",
+    "frl-excelon-bl74": "FRL G3/4, 40 μm, 0.3 a 10 bar",
+    "cilindro-ra192032mx50": "32 mm, carrera 50 mm, ISO 21287",
+  };
+
+  return summaries[record.id] || "Especificaciones por confirmar";
 }
 
 function setCategory(categoryName, options = {}) {
@@ -314,79 +518,13 @@ function setCategory(categoryName, options = {}) {
   updateOtherFields();
 }
 
-function loadDemoRequest() {
-  if (hasVisitorEnteredData() && !window.confirm("Restablecer ejemplo reemplazará los datos actuales de esta solicitud. ¿Continuar?")) {
-    return;
-  }
-
-  clearStatus();
-  state.quoteItems = [];
-  state.latestMessage = "";
-
-  setCategory("Abrasivos", { resetToDefaults: true });
-  elements.manualProduct.value = "Disco de corte";
-  elements.manualSpecOne.value = "Acero";
-  elements.manualSpecTwo.value = "4½ pulgadas";
-  elements.manualQuantity.value = "1";
-  elements.manualUnit.value = "Pieza";
-
-  document.querySelector("#contact-name").value = "Daniel Canales";
-  document.querySelector("#company").value = "Planta Industrial Demo";
-  document.querySelector("#reply-contact").value = "decanale312@gmail.com";
-  document.querySelector("#department").value = "Mantenimiento";
-  document.querySelector("#urgency").value = "Cotización estándar";
-  document.querySelector("#response-method").value = "WhatsApp";
-  document.querySelector("#preferred-brand").value = "";
-  document.querySelector("#equivalents").value = "";
-  document.querySelector("#required-date").value = "";
-  document.querySelector("#general-notes").value = "";
-
-  elements.optionalDetails.open = false;
-  hideGeneratedMessage();
-  updateOtherFields();
-  renderQuote();
-  saveDraft();
-  showStatus("Ejemplo restablecido.", false);
-}
-
-function hasVisitorEnteredData() {
-  const demoDefaults = categoryConfigs.Abrasivos.defaults;
-  const manual = getManualState();
-  const hasManualChanges = manual.category !== "Abrasivos"
-    || manual.product !== demoDefaults.product
-    || manual.specOne !== demoDefaults.specOne
-    || manual.specTwo !== demoDefaults.specTwo
-    || manual.quantity !== "1"
-    || manual.unit !== "Pieza"
-    || manual.productOther.trim()
-    || manual.specOneOther.trim()
-    || manual.specTwoOther.trim();
-
-  const fieldsWithPossibleVisitorData = [
-    "#contact-name",
-    "#company",
-    "#department",
-    "#reply-contact",
-    "#urgency",
-    "#required-date",
-    "#preferred-brand",
-    "#response-method",
-    "#equivalents",
-    "#general-notes",
-  ];
-
-  return state.quoteItems.length > 0
-    || hasManualChanges
-    || fieldsWithPossibleVisitorData.some((selector) => document.querySelector(selector).value.trim());
-}
-
 function preloadDemoFieldsIfEmpty() {
   setValueIfEmpty("#contact-name", "Daniel Canales");
   setValueIfEmpty("#company", "Planta Industrial Demo");
-  setValueIfEmpty("#department", "Mantenimiento");
   setValueIfEmpty("#reply-contact", "decanale312@gmail.com");
-  setValueIfEmpty("#response-method", "WhatsApp");
+  setValueIfEmpty("#department", "Mantenimiento");
   setValueIfEmpty("#urgency", "Cotización estándar");
+  setValueIfEmpty("#response-method", "WhatsApp");
 }
 
 function setValueIfEmpty(selector, value) {
@@ -442,6 +580,7 @@ function addConfiguredProduct() {
     ...item,
   });
 
+  state.currentProductRecordId = "";
   setCategory(item.category, { resetToDefaults: true });
   hideGeneratedMessage();
   renderQuote();
@@ -453,7 +592,8 @@ function addConfiguredProduct() {
 function getConfiguredItem() {
   const category = elements.manualCategory.value;
   const config = categoryConfigs[category];
-  return {
+  const record = getProductRecord(state.currentProductRecordId);
+  const item = {
     category,
     productLabel: config.productLabel,
     product: resolveOther(elements.manualProduct, elements.productOther),
@@ -464,6 +604,18 @@ function getConfiguredItem() {
     quantity: Math.max(1, Number(elements.manualQuantity.value) || 1),
     unit: elements.manualUnit.value || "Pieza",
   };
+
+  if (record && item.product === record.productName) {
+    item.productRecordId = record.id;
+    item.manufacturer = record.manufacturer;
+    item.model = record.model;
+    item.sku = record.sku;
+    item.specifications = record.specifications;
+    item.priceNote = record.priceNote;
+    item.catalogNote = record.note;
+  }
+
+  return item;
 }
 
 function resolveOther(select, input) {
@@ -478,7 +630,6 @@ function getFirstVisibleOtherInput() {
 }
 
 function renderQuote() {
-  elements.quoteCount.textContent = String(getRequestItems().length);
   elements.additionalProductsPanel.hidden = state.quoteItems.length === 0;
   elements.emptyQuote.hidden = state.quoteItems.length > 0;
 
@@ -511,6 +662,7 @@ function editQuoteItem(id) {
 
 function applyItemToControls(item) {
   setCategory(item.category, { resetToDefaults: true });
+  state.currentProductRecordId = item.productRecordId || "";
   setSelectOrOther(elements.manualProduct, elements.productOther, item.product);
   setSelectOrOther(elements.manualSpecOne, elements.specOneOther, item.specOne);
   setSelectOrOther(elements.manualSpecTwo, elements.specTwoOther, item.specTwo);
@@ -649,7 +801,28 @@ function buildMessage(requestItems) {
     lines.push(`${item.productLabel}: ${item.product}`);
     lines.push(`${item.specOneLabel}: ${item.specOne}`);
     lines.push(`${item.specTwoLabel}: ${item.specTwo}`);
+    if (item.manufacturer) {
+      lines.push(`Marca: ${item.manufacturer}`);
+    }
+    if (item.model) {
+      lines.push(`Modelo / configuración: ${item.model}`);
+    }
+    if (item.sku) {
+      lines.push(`Número de parte: ${item.sku}`);
+    }
+    if (Array.isArray(item.specifications) && item.specifications.length > 0) {
+      lines.push("Especificaciones principales:");
+      item.specifications.forEach((specification) => {
+        lines.push(`- ${specification}`);
+      });
+    }
     lines.push(`Cantidad: ${item.quantity} ${formatUnit(item.unit, item.quantity)}`);
+    if (item.priceNote) {
+      lines.push(item.priceNote);
+    }
+    if (item.catalogNote) {
+      lines.push(item.catalogNote);
+    }
     lines.push("");
   });
 
@@ -686,7 +859,7 @@ function buildMessage(requestItems) {
   }
 
   lines.push("");
-  lines.push("Aviso: esta solicitud se generó desde una demostración de portafolio. No se almacena en servidor.");
+  lines.push("Aviso: esta solicitud fue preparada desde un proyecto demostrativo de portafolio y no representa una oferta comercial real.");
 
   return lines.join("\n");
 }
@@ -740,11 +913,50 @@ function editRequest() {
   showStatus("Puedes editar la solicitud y generar el mensaje otra vez.", false);
 }
 
+function openEmailModal() {
+  if (!elements.emailModal) return;
+
+  elements.emailModal.hidden = false;
+  elements.emailModal.dataset.previousFocus = document.activeElement?.id || "";
+  elements.continueWhatsapp?.focus();
+}
+
+function closeEmailModal() {
+  if (!elements.emailModal) return;
+
+  const previousFocusId = elements.emailModal.dataset.previousFocus;
+  elements.emailModal.hidden = true;
+
+  if (previousFocusId) {
+    document.querySelector(`#${previousFocusId}`)?.focus();
+  } else {
+    elements.requestEmail?.focus();
+  }
+}
+
+function continueWithWhatsapp() {
+  closeEmailModal();
+
+  if (!elements.messageWorkspace.hidden) {
+    elements.messageWorkspace.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
+      elements.whatsappLink.focus();
+    }, 250);
+    return;
+  }
+
+  document.querySelector("#cotizacion").scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    elements.generateWhatsapp.focus();
+  }, 250);
+}
+
 function saveDraft() {
   const draft = {
     quoteItems: state.quoteItems,
     latestMessage: state.latestMessage,
     manual: getManualState(),
+    currentProductRecordId: state.currentProductRecordId,
     fields: {
       contactName: document.querySelector("#contact-name").value,
       company: document.querySelector("#company").value,
@@ -773,6 +985,7 @@ function getManualState() {
     specTwoOther: elements.specTwoOther.value,
     quantity: elements.manualQuantity.value,
     unit: elements.manualUnit.value,
+    productRecordId: state.currentProductRecordId,
   };
 }
 
@@ -784,16 +997,19 @@ function restoreDraft() {
     const draft = JSON.parse(saved);
     state.quoteItems = Array.isArray(draft.quoteItems) ? draft.quoteItems : [];
     state.latestMessage = draft.latestMessage || "";
+    state.currentProductRecordId = draft.currentProductRecordId || draft.manual?.productRecordId || "";
 
-    if (draft.manual?.category && categoryConfigs[draft.manual.category]) {
-      elements.manualCategory.value = draft.manual.category;
-      setCategory(draft.manual.category, { resetToDefaults: false });
+    const restoredCategory = normalizeCategoryName(draft.manual?.category);
+
+    if (restoredCategory && categoryConfigs[restoredCategory]) {
+      elements.manualCategory.value = restoredCategory;
+      setCategory(restoredCategory, { resetToDefaults: false });
       elements.productOther.value = draft.manual.productOther || "";
       elements.specOneOther.value = draft.manual.specOneOther || "";
       elements.specTwoOther.value = draft.manual.specTwoOther || "";
-      setSelectOrOther(elements.manualProduct, elements.productOther, draft.manual.product || categoryConfigs[draft.manual.category].defaults.product);
-      setSelectOrOther(elements.manualSpecOne, elements.specOneOther, draft.manual.specOne || categoryConfigs[draft.manual.category].defaults.specOne);
-      setSelectOrOther(elements.manualSpecTwo, elements.specTwoOther, draft.manual.specTwo || categoryConfigs[draft.manual.category].defaults.specTwo);
+      setSelectOrOther(elements.manualProduct, elements.productOther, draft.manual.product || categoryConfigs[restoredCategory].defaults.product);
+      setSelectOrOther(elements.manualSpecOne, elements.specOneOther, draft.manual.specOne || categoryConfigs[restoredCategory].defaults.specOne);
+      setSelectOrOther(elements.manualSpecTwo, elements.specTwoOther, draft.manual.specTwo || categoryConfigs[restoredCategory].defaults.specTwo);
       restoreOtherText(elements.manualProduct, elements.productOther, draft.manual.productOther);
       restoreOtherText(elements.manualSpecOne, elements.specOneOther, draft.manual.specOneOther);
       restoreOtherText(elements.manualSpecTwo, elements.specTwoOther, draft.manual.specTwoOther);
@@ -833,6 +1049,14 @@ function restoreOtherText(select, input, value) {
   if ((select.value === "Otro" || select.value === "Otra") && value) {
     input.value = value;
   }
+}
+
+function normalizeCategoryName(categoryName) {
+  if (categoryName === "Climatización y ventilación") {
+    return "Neumática";
+  }
+
+  return categoryName;
 }
 
 function escapeHtml(value) {
