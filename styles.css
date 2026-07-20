@@ -861,6 +861,11 @@ textarea {
   margin-top: 16px;
 }
 
+.notes-field {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
 label span {
   color: var(--red);
 }

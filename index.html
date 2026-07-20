@@ -228,22 +228,18 @@
                   <option value="juego(s)">juego(s)</option>
                 </select>
               </label>
-              <label class="other-field" id="manual-product-other-wrap" hidden>
-                Otro producto
-                <input type="text" id="manual-product-other">
-              </label>
-              <label class="other-field" id="manual-spec-one-other-wrap" hidden>
-                Otra especificación
-                <input type="text" id="manual-spec-one-other">
-              </label>
-              <label class="other-field" id="manual-spec-two-other-wrap" hidden>
-                Otra especificación
-                <input type="text" id="manual-spec-two-other">
-              </label>
             </div>
+            <input type="hidden" id="manual-product-other">
+            <input type="hidden" id="manual-spec-one-other">
+            <input type="hidden" id="manual-spec-two-other">
           </div>
 
           <div class="form-panel">
+            <label class="full-field notes-field">
+              Notas generales
+              <textarea id="general-notes" rows="4" placeholder="Agrega información adicional sobre aplicación, entrega, equivalencias o requisitos especiales."></textarea>
+            </label>
+
             <h3>Datos de contacto</h3>
             <div class="quick-contact-grid">
               <label>
@@ -317,16 +313,11 @@
                   </select>
                 </label>
               </div>
-              <label class="full-field">
-                Notas generales
-                <textarea id="general-notes" rows="4" placeholder="Aplicacion, contexto de planta, equivalencias, foto disponible o comentarios para compras."></textarea>
-              </label>
             </details>
           </div>
 
           <div class="form-actions">
             <button class="button button-red" type="submit" id="generate-whatsapp">Generar solicitud por WhatsApp</button>
-            <button class="button button-outline button-small" type="button" id="add-manual-product">Agregar otro producto</button>
           </div>
 
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>

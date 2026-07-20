@@ -322,7 +322,7 @@ function bindEvents() {
     });
   });
 
-  elements.addManualProduct.addEventListener("click", addConfiguredProduct);
+  elements.addManualProduct?.addEventListener("click", addConfiguredProduct);
 
   elements.quoteItems.addEventListener("click", (event) => {
     const editButton = event.target.closest("[data-edit-quote]");
@@ -508,9 +508,9 @@ function setCategory(categoryName, options = {}) {
     elements.specOneOther.value = "";
     elements.specTwoOther.value = "";
   } else {
-    elements.manualProduct.value = config.products.includes(current.product) ? current.product : config.defaults.product;
-    elements.manualSpecOne.value = config.specOne.includes(current.specOne) ? current.specOne : config.defaults.specOne;
-    elements.manualSpecTwo.value = config.specTwo.includes(current.specTwo) ? current.specTwo : config.defaults.specTwo;
+    elements.manualProduct.value = selectHasOption(elements.manualProduct, current.product) ? current.product : config.defaults.product;
+    elements.manualSpecOne.value = selectHasOption(elements.manualSpecOne, current.specOne) ? current.specOne : config.defaults.specOne;
+    elements.manualSpecTwo.value = selectHasOption(elements.manualSpecTwo, current.specTwo) ? current.specTwo : config.defaults.specTwo;
     elements.manualQuantity.value = current.quantity || "1";
     elements.manualUnit.value = current.unit || "Pieza";
   }
@@ -535,22 +535,19 @@ function setValueIfEmpty(selector, value) {
 }
 
 function renderSelect(select, options) {
-  select.innerHTML = options.map((option) => `<option value="${option}">${option}</option>`).join("");
+  const verifiedOptions = options.filter((option) => option !== "Otro" && option !== "Otra");
+  select.innerHTML = verifiedOptions.map((option) => `<option value="${option}">${option}</option>`).join("");
+}
+
+function selectHasOption(select, value) {
+  return Array.from(select.options).some((option) => option.value === value);
 }
 
 function updateOtherFields() {
-  toggleOtherField(elements.manualProduct, elements.productOtherWrap, elements.productOther);
-  toggleOtherField(elements.manualSpecOne, elements.specOneOtherWrap, elements.specOneOther);
-  toggleOtherField(elements.manualSpecTwo, elements.specTwoOtherWrap, elements.specTwoOther);
-}
-
-function toggleOtherField(select, wrapper, input) {
-  const isOther = select.value === "Otro" || select.value === "Otra";
-  wrapper.hidden = !isOther;
-  input.required = isOther;
-  if (!isOther) {
+  [elements.productOther, elements.specOneOther, elements.specTwoOther].forEach((input) => {
     input.value = "";
-  }
+    input.required = false;
+  });
 }
 
 function addConfiguredProduct() {
@@ -619,14 +616,11 @@ function getConfiguredItem() {
 }
 
 function resolveOther(select, input) {
-  if (select.value === "Otro" || select.value === "Otra") {
-    return input.value.trim();
-  }
   return select.value;
 }
 
 function getFirstVisibleOtherInput() {
-  return [elements.productOther, elements.specOneOther, elements.specTwoOther].find((input) => !input.closest("label").hidden);
+  return null;
 }
 
 function renderQuote() {
@@ -680,11 +674,7 @@ function setSelectOrOther(select, otherInput, value) {
     return;
   }
 
-  const otherOption = Array.from(select.options).find((option) => option.value === "Otro" || option.value === "Otra");
-  if (otherOption) {
-    select.value = otherOption.value;
-    otherInput.value = value;
-  }
+  otherInput.value = "";
 }
 
 function removeQuoteItem(id) {
@@ -696,6 +686,7 @@ function removeQuoteItem(id) {
 function clearQuote() {
   state.quoteItems = [];
   state.latestMessage = "";
+  document.querySelector("#general-notes").value = "";
   hideGeneratedMessage();
   renderQuote();
   saveDraft();
